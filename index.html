@@ -3,56 +3,177 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GreenEdge Support</title>
+<title>GreenEdge: Rate Your Day</title>
+<meta name="description" content="Results take months. Track the part you control: rate each day green, yellow or red, and see what your good weeks have in common. Private by design, for iPhone.">
+<meta property="og:title" content="GreenEdge: Rate Your Day">
+<meta property="og:description" content="Track the part you control. Rate your day in one tap, and see what your good weeks have in common.">
+<meta property="og:image" content="https://racoonamp.github.io/greenedge-site/img/icon-512.png">
+<link rel="icon" href="img/icon-512.png">
 <style>
-  :root { --text: #1c1c1e; --muted: #6c6c70; --bg: #f2f2f7; --card: #ffffff; --accent: #1f8a5b; }
+  :root { --text: #1c1c1e; --muted: #6c6c70; --bg: #f2f2f7; --card: #ffffff; --accent: #1f8a5b; --line: #d9d9de;
+          --green: #2fb36b; --yellow: #eaa900; --red: #e8474c; }
   @media (prefers-color-scheme: dark) {
-    :root { --text: #f2f2f7; --muted: #aeaeb2; --bg: #000000; --card: #1c1c1e; --accent: #3ccb7f; }
+    :root { --text: #f2f2f7; --muted: #aeaeb2; --bg: #000000; --card: #1c1c1e; --accent: #3ccb7f; --line: #3a3a3c; }
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text);
          font: 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif; }
-  main { max-width: 680px; margin: 0 auto; padding: 40px 16px 64px; }
-  .card { background: var(--card); border-radius: 20px; padding: 28px 24px; margin-bottom: 16px; }
-  h1 { font: 700 30px/1.2 ui-rounded, -apple-system, sans-serif; margin: 0 0 4px; }
-  h2 { font: 600 19px/1.3 ui-rounded, -apple-system, sans-serif; margin: 0 0 8px; }
+  main { max-width: 880px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font: 700 40px/1.12 ui-rounded, -apple-system, sans-serif; margin: 0 0 12px; letter-spacing: -0.01em; }
+  h2 { font: 600 21px/1.3 ui-rounded, -apple-system, sans-serif; margin: 0 0 8px; }
   p { margin: 0 0 10px; }
-  .muted { color: var(--muted); }
   a { color: var(--accent); }
+  .muted { color: var(--muted); }
+  .hero { display: flex; gap: 20px; align-items: center; margin-bottom: 8px; }
+  .hero img { width: 84px; height: 84px; border-radius: 19px; flex: none; }
+  .hero .name { font: 700 22px/1.2 ui-rounded, -apple-system, sans-serif; }
+  .lead { font-size: 20px; line-height: 1.45; max-width: 620px; }
+  .dots { display: inline-flex; gap: 5px; vertical-align: middle; margin-right: 6px; }
+  .dots i { width: 12px; height: 12px; border-radius: 4px; display: inline-block; }
+  .store { display: inline-block; margin: 14px 0 6px; padding: 12px 22px; border-radius: 14px; background: var(--text);
+           color: var(--bg); font: 600 17px/1.2 ui-rounded, -apple-system, sans-serif; text-decoration: none; }
+  .store.soon { background: transparent; color: var(--text); border: 1.5px solid var(--line); }
+  .shots { display: flex; gap: 16px; overflow-x: auto; padding: 22px 2px 14px; margin: 0 -16px; padding-left: 16px;
+           padding-right: 16px; scroll-snap-type: x mandatory; }
+  .shots figure { margin: 0; flex: none; width: 236px; scroll-snap-align: start; }
+  .shots img { width: 100%; height: auto; display: block; border-radius: 26px; border: 1px solid var(--line); }
+  .shots figcaption { font-size: 14px; color: var(--muted); text-align: center; margin-top: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 18px; }
+  .card { background: var(--card); border-radius: 20px; padding: 24px; }
+  .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+  ul { margin: 0 0 10px; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  .wide { margin-top: 16px; }
+  .why { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; align-items: center; margin-top: 16px; }
+  .why video { width: 100%; max-width: 300px; aspect-ratio: 9 / 16; border-radius: 22px; background: #0f3d27; display: block; margin: 0 auto; }
+  .stages { display: flex; align-items: center; gap: 6px; margin: 14px 0; flex-wrap: wrap; }
+  .stage { flex: 1; min-width: 86px; text-align: center; border: 1.5px solid var(--line); border-radius: 14px; padding: 10px 6px; font-size: 15px; }
+  .stage small { display: block; color: var(--muted); font-size: 12.5px; }
+  .stage.on { border-color: var(--green); background: color-mix(in srgb, var(--green) 14%, transparent); font-weight: 600; }
+  .stage.on small { color: var(--accent); font-weight: 600; }
+  .arrow { color: var(--muted); }
+  footer { margin-top: 28px; font-size: 15px; color: var(--muted); }
+  footer a { margin-right: 16px; }
+  @media (max-width: 520px) { h1 { font-size: 32px; } .lead { font-size: 18px; } }
 </style>
 </head>
 <body>
 <main>
-  <div class="card">
-    <h1>GreenEdge Support</h1>
-    <p class="muted">Win the day. See the trend.</p>
-    <p>Questions, problems or ideas? Email <a href="mailto:greenedgeapp@gmail.com">greenedgeapp@gmail.com</a> and
-      I'll get back to you.</p>
+  <div class="hero">
+    <img src="img/icon-512.png" alt="GreenEdge app icon">
+    <div>
+      <div class="name">GreenEdge</div>
+      <div class="muted">Win the day. See the trend.</div>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>How does iCloud sync work?</h2>
-    <p>If you're signed in to iCloud, GreenEdge syncs automatically through your private iCloud account. You can
-      check the status in Settings → iCloud sync. If iCloud isn't available, your data is saved on your iPhone
-      and syncs when iCloud is back.</p>
+  <h1>Track the part you control.</h1>
+  <p class="lead">Results take months, and a good week can still end in a bad number. What you control is
+    today: did you show up the way you want to? Rate it in one tap.
+    <span class="dots" aria-hidden="true"><i style="background:var(--green)"></i><i style="background:var(--yellow)"></i><i style="background:var(--red)"></i></span>Green,
+    yellow or red. Over weeks and months, the colours show what your good weeks have in common.</p>
+
+  <!-- At launch, replace the line below with:
+       <a class="store" href="https://apps.apple.com/app/id6828074348">Download on the App Store</a> -->
+  <span class="store soon">Coming to the App Store</span>
+  <p class="muted">For iPhone. Free to use, with an optional Premium.</p>
+
+  <div class="card wide">
+    <div class="why">
+      <div>
+        <h2>Why rate your days?</h2>
+        <p>Most tracking looks at how you feel, or at what you got. What sits between them is what you
+          did, and that's the part you can change today.</p>
+        <div class="stages" role="img" aria-label="Thoughts and feelings, then actions, then outcomes. Other apps track feelings or outcomes. GreenEdge tracks actions.">
+          <div class="stage"><small>Other apps</small>Feelings</div><span class="arrow" aria-hidden="true">→</span>
+          <div class="stage on"><small>GreenEdge</small>Actions</div><span class="arrow" aria-hidden="true">→</span>
+          <div class="stage"><small>Other apps</small>Outcomes</div>
+        </div>
+        <ul>
+          <li><strong>Something you can win today.</strong> The result may be months off. A green day is available tonight.</li>
+          <li><strong>Evidence about what works for you.</strong> See what goes with your green days, and what goes with the red ones.</li>
+          <li><strong>The link back to results.</strong> Your days beside your weight, sleep and more from Apple Health.</li>
+        </ul>
+        <p><a href="why.html">Read the whole idea</a></p>
+      </div>
+      <video controls playsinline preload="none" poster="img/why-poster.jpg" src="preview/GreenEdge-why.mp4" aria-label="A 30-second video: results take months, so track the part you control"></video>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>How do I back up or move my data?</h2>
-    <p>Settings → Your data → Export backup (JSON) saves everything. Settings → Your data → Restore from backup merges a backup into
-      your data; where a day exists in both, the most recently changed version is kept. Restoring the same file
-      twice is safe.</p>
+  <div class="shots">
+    <figure><img src="img/shot-week.jpg" width="660" height="1434" alt="A week in GreenEdge: seven days, each filled with its colour"><figcaption>One tap a day</figcaption></figure>
+    <figure><img src="img/shot-year.jpg" width="660" height="1434" alt="A year in GreenEdge: every day as a small coloured square" loading="lazy"><figcaption>Your year in colour</figcaption></figure>
+    <figure><img src="img/shot-day.jpg" width="660" height="1434" alt="Rating a day green, yellow or red, with trackers underneath" loading="lazy"><figcaption>Track what matters to you</figcaption></figure>
+    <figure><img src="img/shot-trackers.jpg" width="660" height="1434" alt="Patterns between trackers and the colour of the day" loading="lazy"><figcaption>What goes with green days</figcaption></figure>
+    <figure><img src="img/shot-share.jpg" width="660" height="1434" alt="A year shared as a picture of its colours" loading="lazy"><figcaption>Share your year</figcaption></figure>
   </div>
 
-  <div class="card">
-    <h2>Can I fill in past days?</h2>
-    <p>Yes. Home offers yesterday and other recent unrated days, and you can tap any day in the Calendar.</p>
+  <div class="grid">
+    <div class="card">
+      <h2>One tap a day</h2>
+      <p>At the end of the day, pick a colour: green for a good day, yellow for not quite, red for a setback.
+        It's your own honest judgement, against your own standards. Add a note if you like, and fill in a
+        missed day any time.</p>
+    </div>
+    <div class="card">
+      <h2>Track the details</h2>
+      <p>Make your own trackers for whatever shapes your days: drinks, training, sleep, caffeine, anything.
+        Log them in the same panel as the colour.</p>
+    </div>
+    <div class="card">
+      <h2>See the trend</h2>
+      <p>Week, month and year views, a running score, streaks and optional goals. Share a month or your
+        year as a picture: colours only, never your notes.</p>
+    </div>
+    <div class="card">
+      <h2>Private by design</h2>
+      <p>No account, no servers, no ads, no tracking. Your days live on your iPhone and sync through your
+        own private iCloud. The developer can't see them.</p>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Privacy</h2>
-    <p>GreenEdge collects no data. See the <a href="privacy-policy.html">privacy policy</a>.</p>
+  <div class="card wide">
+    <h2>GreenEdge Premium</h2>
+    <p>Rating your days, trackers, the calendar and the Summary are free, with no limits. Premium is
+      optional and adds:</p>
+    <ul>
+      <li><strong>Insights:</strong> each week, month and year against your usual, and which trackers go
+        with your green days and your red ones.</li>
+      <li><strong>Health:</strong> your weight, sleep, activity, heart and more from Apple Health, beside
+        your days. Read only, and never off your iPhone.</li>
+    </ul>
+    <p class="muted">Yearly with a 7-day free trial, monthly, or a one-time Lifetime purchase. Prices are shown
+      in the app. GreenEdge isn't a medical app and doesn't give medical advice.</p>
   </div>
+
+  <div class="card wide" id="press">
+    <h2>Press kit</h2>
+    <p>GreenEdge is made by one independent developer in Australia. It began as a way to answer one
+      question each evening, and to see months later what the good weeks had in common.</p>
+    <ul>
+      <li><a href="img/icon-1024.png">App icon</a> (1024 × 1024)</li>
+      <li>Screenshots with captions:
+        <a href="screenshots/01-week.png">week</a>,
+        <a href="screenshots/02-day.png">a day</a>,
+        <a href="screenshots/03-year.png">year</a>,
+        <a href="screenshots/04-trackers-3.png">patterns</a>,
+        <a href="screenshots/05-health-1.png">health</a>,
+        <a href="screenshots/06-summary-1.png">summary</a>,
+        <a href="screenshots/07-insights-1.png">insights</a>,
+        <a href="screenshots/08-share.png">sharing</a></li>
+      <li><a href="preview/GreenEdge-why.mp4">Video</a> (30 seconds, 1080 × 1920) and <a href="why.html">the idea behind the app</a></li>
+      <li>Plain screenshots:
+        <a href="img/shot-week.jpg">week</a>, <a href="img/shot-year.jpg">year</a>,
+        <a href="img/shot-day.jpg">a day</a>, <a href="img/shot-trackers.jpg">patterns</a>,
+        <a href="img/shot-share.jpg">sharing</a></li>
+    </ul>
+    <p>Questions, or a code to try Premium: <a href="mailto:greenedgeapp@gmail.com">greenedgeapp@gmail.com</a></p>
+  </div>
+
+  <footer>
+    <a href="why.html">Why rate your days?</a><a href="support.html">Support</a><a href="privacy-policy.html">Privacy Policy</a>
+    <span>© 2026 GreenEdge</span>
+  </footer>
 </main>
 </body>
 </html>

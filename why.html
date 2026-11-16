@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why rate your days? GreenEdge</title>
+<meta name="description" content="Most tracking looks at how you feel or what you got. GreenEdge tracks what sits between: whether you showed up today the way you want to.">
+<meta property="og:title" content="Why rate your days?">
+<meta property="og:description" content="Track the part you control. Rate your day in one tap, and see what your good weeks have in common.">
+<meta property="og:image" content="https://racoonamp.github.io/greenedge-site/img/icon-512.png">
+<link rel="icon" href="img/icon-512.png">
+<style>
+  :root { --text: #1c1c1e; --muted: #6c6c70; --bg: #f2f2f7; --card: #ffffff; --accent: #1f8a5b; --line: #d9d9de;
+          --green: #2fb36b; --yellow: #eaa900; --red: #e8474c; }
+  @media (prefers-color-scheme: dark) {
+    :root { --text: #f2f2f7; --muted: #aeaeb2; --bg: #000000; --card: #1c1c1e; --accent: #3ccb7f; --line: #3a3a3c; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font: 700 40px/1.12 ui-rounded, -apple-system, sans-serif; margin: 0 0 12px; letter-spacing: -0.01em; }
+  h2 { font: 600 21px/1.3 ui-rounded, -apple-system, sans-serif; margin: 0 0 8px; }
+  p { margin: 0 0 10px; }
+  a { color: var(--accent); }
+  .muted { color: var(--muted); }
+  .hero { display: flex; gap: 20px; align-items: center; margin-bottom: 8px; }
+  .hero img { width: 84px; height: 84px; border-radius: 19px; flex: none; }
+  .hero .name { font: 700 22px/1.2 ui-rounded, -apple-system, sans-serif; }
+  .lead { font-size: 20px; line-height: 1.45; max-width: 620px; }
+  .dots { display: inline-flex; gap: 5px; vertical-align: middle; margin-right: 6px; }
+  .dots i { width: 12px; height: 12px; border-radius: 4px; display: inline-block; }
+  .store { display: inline-block; margin: 14px 0 6px; padding: 12px 22px; border-radius: 14px; background: var(--text);
+           color: var(--bg); font: 600 17px/1.2 ui-rounded, -apple-system, sans-serif; text-decoration: none; }
+  .store.soon { background: transparent; color: var(--text); border: 1.5px solid var(--line); }
+  .shots { display: flex; gap: 16px; overflow-x: auto; padding: 22px 2px 14px; margin: 0 -16px; padding-left: 16px;
+           padding-right: 16px; scroll-snap-type: x mandatory; }
+  .shots figure { margin: 0; flex: none; width: 236px; scroll-snap-align: start; }
+  .shots img { width: 100%; height: auto; display: block; border-radius: 26px; border: 1px solid var(--line); }
+  .shots figcaption { font-size: 14px; color: var(--muted); text-align: center; margin-top: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 18px; }
+  .card { background: var(--card); border-radius: 20px; padding: 24px; }
+  .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+  ul { margin: 0 0 10px; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  .wide { margin-top: 16px; }
+  .why { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; align-items: center; margin-top: 16px; }
+  .why video { width: 100%; max-width: 300px; aspect-ratio: 9 / 16; border-radius: 22px; background: #0f3d27; display: block; margin: 0 auto; }
+  .stages { display: flex; align-items: center; gap: 6px; margin: 14px 0; flex-wrap: wrap; }
+  .stage { flex: 1; min-width: 86px; text-align: center; border: 1.5px solid var(--line); border-radius: 14px; padding: 10px 6px; font-size: 15px; }
+  .stage small { display: block; color: var(--muted); font-size: 12.5px; }
+  .stage.on { border-color: var(--green); background: color-mix(in srgb, var(--green) 14%, transparent); font-weight: 600; }
+  .stage.on small { color: var(--accent); font-weight: 600; }
+  .arrow { color: var(--muted); }
+  footer { margin-top: 28px; font-size: 15px; color: var(--muted); }
+  footer a { margin-right: 16px; }
+  @media (max-width: 520px) { h1 { font-size: 32px; } .lead { font-size: 18px; } }
+</style>
+</head>
+<body>
+<main>
+  <a class="hero" href="index.html" style="text-decoration:none;color:inherit">
+    <img src="img/icon-512.png" alt="GreenEdge app icon">
+    <div>
+      <div class="name">GreenEdge</div>
+      <div class="muted">Win the day. See the trend.</div>
+    </div>
+  </a>
+
+  <h1>Why rate your days?</h1>
+  <p class="lead">Most tracking looks at one of two things: how you feel, or what you got.</p>
+
+  <div class="card wide">
+    <p>Moods and journals track how you feel. Scales, savings apps and race times track what you got.
+      Both matter, and both are hard to act on. Feelings come and go. Outcomes move slowly, and they move
+      for reasons that aren't you: a week of doing everything right can end with a number that says
+      otherwise. If the number is all you track, that's the week you give up.</p>
+    <p><strong>What sits between the two is what you did.</strong></p>
+    <div class="stages" role="img" aria-label="Thoughts and feelings, then actions, then outcomes. Other apps track feelings or outcomes. GreenEdge tracks actions.">
+      <div class="stage"><small>Other apps</small>Feelings</div><span class="arrow" aria-hidden="true">→</span>
+      <div class="stage on"><small>GreenEdge</small>Actions</div><span class="arrow" aria-hidden="true">→</span>
+      <div class="stage"><small>Other apps</small>Outcomes</div>
+    </div>
+    <p>Your actions are the part you control, and they're what move the outcomes. So GreenEdge asks one
+      question each evening: <strong>did you show up today the way you want to?</strong></p>
+    <ul>
+      <li><strong>Green:</strong> a good day. You acted the way you want to act.</li>
+      <li><strong>Yellow:</strong> not quite.</li>
+      <li><strong>Red:</strong> a setback. Tomorrow is a fresh start.</li>
+    </ul>
+    <p>A green day is a day you acted the way you want to. Keep having them and, in time, you become the
+      person you want to be.</p>
+    <p>There's no rulebook. Someone drinking less might call a dry day green. Someone training for a race
+      might call it green for getting the run in. It's your own judgement, against your own standards,
+      and it takes one tap.</p>
+  </div>
+
+  <div class="card wide">
+    <h2>What one tap a day gets you</h2>
+    <p><strong>Something you can win today.</strong> The result you're after may be months away. A green
+      day is available tonight.</p>
+    <p><strong>An honest record without the guilt.</strong> One red day doesn't break anything. It's one
+      square among hundreds, and the trend is what counts: green days minus red days, week by week.</p>
+    <p><strong>Evidence about what works for you.</strong> Add a tracker or two (drinks, training, sleep,
+      anything) and after a few weeks GreenEdge shows what tends to go with your green days and what
+      tends to go with the red ones. These are patterns in your own days, and they show what has gone
+      together, which isn't proof of what caused what.</p>
+    <p><strong>The link back to results.</strong> If your weight, sleep or activity is in Apple Health,
+      GreenEdge sets it beside your days, so you can see how the numbers have lined up with the days
+      behind them.</p>
+    <p><strong>A habit that lasts.</strong> Most tracking stops because it becomes a chore. This is one
+      tap, and nothing nags you to do it.</p>
+  </div>
+
+  <div class="card wide">
+    <h2>How it's different</h2>
+    <ul>
+      <li><strong>A mood tracker</strong> asks how you felt. You can feel flat and still have a green day.</li>
+      <li><strong>A habit tracker</strong> gives you a list of boxes and a streak to protect. GreenEdge asks
+        for one judgement of the whole day, and you decide what counted.</li>
+      <li><strong>An outcome tracker</strong> shows the number. GreenEdge shows the days that produce it.</li>
+    </ul>
+  </div>
+
+  <div class="card wide">
+    <h2>Where it came from</h2>
+    <p>GreenEdge began as a paper wall calendar: a colour for every day, and a small symbol for the things
+      that seemed to matter. The app keeps that simplicity and adds what paper can't do: totals, trends
+      and patterns.</p>
+    <p class="muted">GreenEdge isn't a medical app and doesn't give medical advice.</p>
+  </div>
+
+  <footer>
+    <a href="index.html">GreenEdge</a><a href="support.html">Support</a><a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+</main>
+</body>
+</html>
