@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GreenEdge Accessibility</title>
+<style>
+  :root { --text: #1c1c1e; --muted: #6c6c70; --bg: #f2f2f7; --card: #ffffff; --accent: #146b3e; }
+  @media (prefers-color-scheme: dark) {
+    :root { --text: #f2f2f7; --muted: #aeaeb2; --bg: #000000; --card: #1c1c1e; --accent: #3ccb7f; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 40px 16px 64px; }
+  .card { background: var(--card); border-radius: 20px; padding: 28px 24px; margin-bottom: 16px; }
+  h1 { font: 700 30px/1.2 ui-rounded, -apple-system, sans-serif; margin: 0 0 4px; }
+  h2 { font: 600 19px/1.3 ui-rounded, -apple-system, sans-serif; margin: 0 0 8px; }
+  p { margin: 0 0 10px; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <h1>Accessibility in GreenEdge</h1>
+    <p class="muted">Win the day. See the trend.</p>
+    <p>GreenEdge is built on green, yellow and red, so it has to work for people who can't tell those apart, and
+      for people who don't use the screen at all. This page says what it supports and where the limits are.</p>
+  </div>
+
+  <div class="card">
+    <h2>VoiceOver</h2>
+    <p>Every screen works with VoiceOver. A day reads as its date and its rating in words; charts read as a
+      summary of what they show; buttons say what they do and what state they're in.</p>
+  </div>
+
+  <div class="card">
+    <h2>Larger text</h2>
+    <p>GreenEdge follows the text size set in the Settings app, up to the largest accessibility size. Everything
+      meant for reading grows all the way. Figures to glance at stop at about 235% and wrap onto more lines, and
+      navigation and chart keys stop at about 165%, so the page isn't filled before you reach your days.</p>
+  </div>
+
+  <div class="card">
+    <h2>Colour is never the only signal</h2>
+    <p>Each colour carries its own mark: a tick for green, a dash for yellow and a cross for red. They're always
+      shown, and Differentiate Without Colour adds them to the smallest squares in the Year view too.</p>
+  </div>
+
+  <div class="card">
+    <h2>Dark Mode and motion</h2>
+    <p>GreenEdge has a full dark appearance. With Reduce Motion on, animations are shortened or replaced with
+      fades.</p>
+  </div>
+
+  <div class="card">
+    <h2>Contrast</h2>
+    <p>With Increase Contrast turned on in the Settings app, GreenEdge deepens its green, yellow and red and sets
+      white text on them, and its grey text darkens, so text is at 4.5 to 1 or better against what's behind
+      it, in light and dark appearance. It follows Bold Text and Reduce Transparency too. With Increase
+      Contrast off, the brighter everyday colours are used, and some coloured figures are below that level.
+      Pictures you share from the app always use the everyday colours.</p>
+  </div>
+
+  <div class="card">
+    <h2>What isn't claimed yet</h2>
+    <p><strong>Voice Control</strong> hasn't been tested. The app has no video or audio of its own, so captions
+      and audio descriptions don't apply.</p>
+  </div>
+
+  <div class="card">
+    <h2>Something not working for you?</h2>
+    <p>Email <a href="mailto:greenedgeapp@gmail.com">greenedgeapp@gmail.com</a>. Accessibility problems are
+      treated as bugs and fixed first.</p>
+  </div>
+</main>
+</body>
+</html>
