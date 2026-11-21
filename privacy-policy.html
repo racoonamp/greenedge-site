@@ -21,34 +21,121 @@
   .summary { border-left: 4px solid var(--accent); padding-left: 14px; margin: 20px 0; }
   a { color: var(--accent); }
 
-  /* Finish (21 November 2026): the three colours along the top, a soft green glow, lifted cards, calmer links. */
-  :root { --edge: rgba(0, 0, 0, 0.05); --shadow: rgba(0, 0, 0, 0.05); --rule: rgba(60, 60, 67, 0.16);
-          --glow: color-mix(in srgb, #2fb36b 13%, transparent); }
+  /* Style (21 November 2026): the three colours along the top, a green hero, lifted cards, and pages
+     broken into pieces that are easy to scan on a phone. */
+  :root { --edge: rgba(0, 0, 0, 0.05); --shadow: rgba(0, 0, 0, 0.07); --rule: rgba(60, 60, 67, 0.14);
+          --glow: color-mix(in srgb, #2fb36b 14%, transparent); --g: #2fb36b; --y: #eaa900; --r: #e8474c;
+          --tint: color-mix(in srgb, #2fb36b 9%, var(--card)); --badge: color-mix(in srgb, #2fb36b 14%, var(--card));
+          --hero-a: #e4f6eb; --hero-b: #c6ead4; --hero-ink: #0d3b26; --hero-soft: #24573d;
+          --hero-chip: rgba(13, 59, 38, 0.07); --hero-btn: #1f8a5b; --hero-btn-ink: #fff; --hero-shade: rgba(31, 138, 91, 0.35); }
   @media (prefers-color-scheme: dark) {
-    :root { --edge: rgba(255, 255, 255, 0.07); --shadow: transparent; --rule: rgba(255, 255, 255, 0.12);
-            --glow: color-mix(in srgb, #3ccb7f 12%, transparent); }
+    :root { --edge: rgba(255, 255, 255, 0.08); --shadow: transparent; --rule: rgba(255, 255, 255, 0.12);
+            --glow: color-mix(in srgb, #3ccb7f 12%, transparent); --tint: color-mix(in srgb, #3ccb7f 10%, var(--card));
+            --badge: color-mix(in srgb, #3ccb7f 18%, var(--card)); --hero-a: #1c8a57; --hero-b: #0b3f29;
+            --hero-ink: #fff; --hero-soft: rgba(255, 255, 255, 0.88); --hero-chip: rgba(255, 255, 255, 0.14);
+            --hero-btn: #fff; --hero-btn-ink: #0f5c3b; --hero-shade: rgba(0, 0, 0, 0.6); }
   }
-  body { -webkit-font-smoothing: antialiased;
+  html { -webkit-text-size-adjust: 100%; }
+  body { -webkit-font-smoothing: antialiased; overflow-x: hidden;
          background: radial-gradient(1100px 480px at 50% -160px, var(--glow), transparent 72%) no-repeat, var(--bg); }
   body::before { content: ""; display: block; height: 4px;
-                 background: linear-gradient(90deg, #2fb36b 0 33.4%, #eaa900 33.4% 66.7%, #e8474c 66.7%); }
+                 background: linear-gradient(90deg, var(--g) 0 33.4%, var(--y) 33.4% 66.7%, var(--r) 66.7%); }
   h1 { letter-spacing: -0.02em; text-wrap: balance; }
   h2 { letter-spacing: -0.005em; text-wrap: balance; }
+  h3 { font: 600 17px/1.3 ui-rounded, -apple-system, sans-serif; margin: 0 0 4px; }
   p, li { text-wrap: pretty; }
   a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
   a:hover { text-decoration-thickness: 2px; }
-  .card { box-shadow: 0 0 0 1px var(--edge), 0 10px 30px -12px var(--shadow); }
-  .hero img, .brand img { box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.25); }
-  .shots img { box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.35); }
+  .card { box-shadow: 0 0 0 1px var(--edge), 0 12px 32px -16px var(--shadow); }
+  .card.tint { background: var(--tint); }
+  .shots img { box-shadow: 0 14px 30px -16px rgba(0, 0, 0, 0.4); }
+
+  /* The small name at the top of the inner pages */
   .brand { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 18px; color: inherit; text-decoration: none;
            font: 700 18px/1.2 ui-rounded, -apple-system, sans-serif; }
-  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.25); }
+  .brand span { color: var(--muted); font-weight: 500; font-size: 15px; margin-left: 2px; }
+
+  /* The green band at the top of the home and why pages */
+  .band { position: relative; overflow: hidden; color: var(--hero-ink); border-radius: 28px; padding: 34px 32px 32px;
+          background: linear-gradient(150deg, var(--hero-a), var(--hero-b)); margin: 0 0 16px;
+          box-shadow: 0 0 0 1px var(--edge), 0 18px 40px -24px var(--hero-shade); display: grid; gap: 28px;
+          grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+  .band a { color: inherit; }
+  .band .who { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; text-decoration: none; }
+  .band .who img { width: 52px; height: 52px; border-radius: 12px; box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.5); }
+  .band .who b { display: block; font: 700 19px/1.2 ui-rounded, -apple-system, sans-serif; }
+  .band .who small { display: block; font-size: 14px; color: var(--hero-soft); }
+  .band h1 { color: var(--hero-ink); margin-bottom: 12px; }
+  .band .lead { color: var(--hero-soft); margin-bottom: 0; }
+  .band .store { background: var(--hero-btn); color: var(--hero-btn-ink); border: 0; margin-top: 22px; }
+  .band .note { font-size: 14px; color: var(--hero-soft); margin: 8px 0 0; }
+  .band .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .band .legend span { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600;
+                       padding: 5px 11px 5px 8px; border-radius: 999px; background: var(--hero-chip); }
+  .band .legend i { width: 12px; height: 12px; border-radius: 4px; }
+  .year { display: grid; grid-template-columns: repeat(7, 18px); gap: 5px; padding: 14px;
+          border-radius: 18px; background: var(--hero-chip); }
+  .year i { width: 18px; height: 18px; border-radius: 5px; }
+  .g { background: var(--g); } .y { background: var(--y); } .r { background: var(--r); }
+  .year .n { background: var(--hero-chip); }
+
+  /* Points with a coloured mark instead of a bullet */
+  .points { list-style: none; padding: 0; margin: 14px 0; display: grid; gap: 12px; }
+  .points li { position: relative; padding-left: 26px; margin: 0; }
+  .points li::before { content: ""; position: absolute; left: 0; top: 0.42em; width: 12px; height: 12px;
+                       border-radius: 4px; background: var(--g); }
+  .points li.y::before { background: var(--y); } .points li.r::before { background: var(--r); }
+  .points li.y, .points li.r, .points li.g { background: none; }
+  .points strong { display: block; }
+
+  /* Feature cards */
+  .badge { width: 40px; height: 40px; border-radius: 12px; background: var(--badge); color: var(--accent);
+           display: grid; place-items: center; margin-bottom: 14px; }
+  .badge svg { width: 22px; height: 22px; }
+  .eyebrow { display: inline-block; font: 700 12px/1 ui-rounded, -apple-system, sans-serif; letter-spacing: 0.08em;
+             text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+
+  /* A quote */
+  .quote { margin: 4px 0 16px; padding: 4px 0 4px 18px; border-left: 4px solid var(--g);
+           font: 500 20px/1.45 ui-rounded, -apple-system, sans-serif; }
+
+  /* Questions that open */
+  .faq { display: grid; gap: 10px; margin: 16px 0; }
+  .faq details { background: var(--card); border-radius: 18px; box-shadow: 0 0 0 1px var(--edge), 0 12px 32px -16px var(--shadow); }
+  .faq summary { list-style: none; cursor: pointer; padding: 18px 52px 18px 22px; position: relative;
+                 font: 600 17px/1.35 ui-rounded, -apple-system, sans-serif; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: ""; position: absolute; right: 22px; top: 50%; width: 9px; height: 9px; margin-top: -7px;
+                        border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg);
+                        transition: transform 0.2s; }
+  .faq details[open] summary::after { transform: rotate(225deg); margin-top: -2px; }
+  .faq details > div { padding: 0 22px 18px; }
+  .faq details > div p:last-child { margin-bottom: 0; }
+
+  /* Cards side by side on a computer */
+  .pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .pair .card { margin: 0; }
+
   footer { margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--rule); font-size: 15px; color: var(--muted);
            display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline; }
   footer a { margin-right: 0; color: var(--muted); text-decoration: none; }
   footer a:hover { color: var(--accent); text-decoration: underline; }
   footer span { margin-left: auto; }
-  @media (max-width: 520px) { main { padding-top: 28px; } .card { padding: 22px 20px; } footer span { margin-left: 0; } }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; line-height: 1.6; }
+    main { padding-top: 22px; }
+    .card { padding: 22px 20px; border-radius: 22px; }
+    .band { grid-template-columns: 1fr; padding: 26px 22px 24px; border-radius: 24px; gap: 20px; }
+    .band .lead { font-size: 17px; }
+    .year { grid-template-columns: repeat(14, 1fr); gap: 4px; padding: 10px; }
+    .year i { width: auto; height: auto; aspect-ratio: 1; border-radius: 4px; }
+    .quote { font-size: 18px; }
+    footer span { margin-left: 0; }
+  }
+  .tintbox { background: var(--tint); border-radius: 0 14px 14px 0; padding: 14px 16px; border-left-color: var(--g); }
+  .card h2 { padding-top: 22px; border-top: 1px solid var(--rule); }
 </style>
 </head>
 <body>
@@ -58,7 +145,7 @@
     <h1>GreenEdge Privacy Policy</h1>
     <p class="muted">Last updated: 20 November 2026</p>
 
-    <p class="summary"><strong>In short:</strong> GreenEdge doesn't collect any of your data. Everything you
+    <p class="summary tintbox"><strong>In short:</strong> GreenEdge doesn't collect any of your data. Everything you
       enter stays on your devices and in your own private iCloud account. There are no accounts, no servers,
       no ads and no tracking.</p>
 

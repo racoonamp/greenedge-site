@@ -57,56 +57,141 @@
   @media (max-width: 520px) { h1 { font-size: 32px; } .lead { font-size: 18px; }
     .stages { gap: 3px; } .stage { font-size: 14px; padding: 9px 3px; } .stage small { font-size: 11.5px; } }
 
-  /* Finish (21 November 2026): the three colours along the top, a soft green glow, lifted cards, calmer links. */
-  :root { --edge: rgba(0, 0, 0, 0.05); --shadow: rgba(0, 0, 0, 0.05); --rule: rgba(60, 60, 67, 0.16);
-          --glow: color-mix(in srgb, #2fb36b 13%, transparent); }
+  /* Style (21 November 2026): the three colours along the top, a green hero, lifted cards, and pages
+     broken into pieces that are easy to scan on a phone. */
+  :root { --edge: rgba(0, 0, 0, 0.05); --shadow: rgba(0, 0, 0, 0.07); --rule: rgba(60, 60, 67, 0.14);
+          --glow: color-mix(in srgb, #2fb36b 14%, transparent); --g: #2fb36b; --y: #eaa900; --r: #e8474c;
+          --tint: color-mix(in srgb, #2fb36b 9%, var(--card)); --badge: color-mix(in srgb, #2fb36b 14%, var(--card));
+          --hero-a: #e4f6eb; --hero-b: #c6ead4; --hero-ink: #0d3b26; --hero-soft: #24573d;
+          --hero-chip: rgba(13, 59, 38, 0.07); --hero-btn: #1f8a5b; --hero-btn-ink: #fff; --hero-shade: rgba(31, 138, 91, 0.35); }
   @media (prefers-color-scheme: dark) {
-    :root { --edge: rgba(255, 255, 255, 0.07); --shadow: transparent; --rule: rgba(255, 255, 255, 0.12);
-            --glow: color-mix(in srgb, #3ccb7f 12%, transparent); }
+    :root { --edge: rgba(255, 255, 255, 0.08); --shadow: transparent; --rule: rgba(255, 255, 255, 0.12);
+            --glow: color-mix(in srgb, #3ccb7f 12%, transparent); --tint: color-mix(in srgb, #3ccb7f 10%, var(--card));
+            --badge: color-mix(in srgb, #3ccb7f 18%, var(--card)); --hero-a: #1c8a57; --hero-b: #0b3f29;
+            --hero-ink: #fff; --hero-soft: rgba(255, 255, 255, 0.88); --hero-chip: rgba(255, 255, 255, 0.14);
+            --hero-btn: #fff; --hero-btn-ink: #0f5c3b; --hero-shade: rgba(0, 0, 0, 0.6); }
   }
-  body { -webkit-font-smoothing: antialiased;
+  html { -webkit-text-size-adjust: 100%; }
+  body { -webkit-font-smoothing: antialiased; overflow-x: hidden;
          background: radial-gradient(1100px 480px at 50% -160px, var(--glow), transparent 72%) no-repeat, var(--bg); }
   body::before { content: ""; display: block; height: 4px;
-                 background: linear-gradient(90deg, #2fb36b 0 33.4%, #eaa900 33.4% 66.7%, #e8474c 66.7%); }
+                 background: linear-gradient(90deg, var(--g) 0 33.4%, var(--y) 33.4% 66.7%, var(--r) 66.7%); }
   h1 { letter-spacing: -0.02em; text-wrap: balance; }
   h2 { letter-spacing: -0.005em; text-wrap: balance; }
+  h3 { font: 600 17px/1.3 ui-rounded, -apple-system, sans-serif; margin: 0 0 4px; }
   p, li { text-wrap: pretty; }
   a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
   a:hover { text-decoration-thickness: 2px; }
-  .card { box-shadow: 0 0 0 1px var(--edge), 0 10px 30px -12px var(--shadow); }
-  .hero img, .brand img { box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.25); }
-  .shots img { box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.35); }
+  .card { box-shadow: 0 0 0 1px var(--edge), 0 12px 32px -16px var(--shadow); }
+  .card.tint { background: var(--tint); }
+  .shots img { box-shadow: 0 14px 30px -16px rgba(0, 0, 0, 0.4); }
+
+  /* The small name at the top of the inner pages */
   .brand { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 18px; color: inherit; text-decoration: none;
            font: 700 18px/1.2 ui-rounded, -apple-system, sans-serif; }
-  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.25); }
+  .brand span { color: var(--muted); font-weight: 500; font-size: 15px; margin-left: 2px; }
+
+  /* The green band at the top of the home and why pages */
+  .band { position: relative; overflow: hidden; color: var(--hero-ink); border-radius: 28px; padding: 34px 32px 32px;
+          background: linear-gradient(150deg, var(--hero-a), var(--hero-b)); margin: 0 0 16px;
+          box-shadow: 0 0 0 1px var(--edge), 0 18px 40px -24px var(--hero-shade); display: grid; gap: 28px;
+          grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+  .band a { color: inherit; }
+  .band .who { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; text-decoration: none; }
+  .band .who img { width: 52px; height: 52px; border-radius: 12px; box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.5); }
+  .band .who b { display: block; font: 700 19px/1.2 ui-rounded, -apple-system, sans-serif; }
+  .band .who small { display: block; font-size: 14px; color: var(--hero-soft); }
+  .band h1 { color: var(--hero-ink); margin-bottom: 12px; }
+  .band .lead { color: var(--hero-soft); margin-bottom: 0; }
+  .band .store { background: var(--hero-btn); color: var(--hero-btn-ink); border: 0; margin-top: 22px; }
+  .band .note { font-size: 14px; color: var(--hero-soft); margin: 8px 0 0; }
+  .band .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .band .legend span { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600;
+                       padding: 5px 11px 5px 8px; border-radius: 999px; background: var(--hero-chip); }
+  .band .legend i { width: 12px; height: 12px; border-radius: 4px; }
+  .year { display: grid; grid-template-columns: repeat(7, 18px); gap: 5px; padding: 14px;
+          border-radius: 18px; background: var(--hero-chip); }
+  .year i { width: 18px; height: 18px; border-radius: 5px; }
+  .g { background: var(--g); } .y { background: var(--y); } .r { background: var(--r); }
+  .year .n { background: var(--hero-chip); }
+
+  /* Points with a coloured mark instead of a bullet */
+  .points { list-style: none; padding: 0; margin: 14px 0; display: grid; gap: 12px; }
+  .points li { position: relative; padding-left: 26px; margin: 0; }
+  .points li::before { content: ""; position: absolute; left: 0; top: 0.42em; width: 12px; height: 12px;
+                       border-radius: 4px; background: var(--g); }
+  .points li.y::before { background: var(--y); } .points li.r::before { background: var(--r); }
+  .points li.y, .points li.r, .points li.g { background: none; }
+  .points strong { display: block; }
+
+  /* Feature cards */
+  .badge { width: 40px; height: 40px; border-radius: 12px; background: var(--badge); color: var(--accent);
+           display: grid; place-items: center; margin-bottom: 14px; }
+  .badge svg { width: 22px; height: 22px; }
+  .eyebrow { display: inline-block; font: 700 12px/1 ui-rounded, -apple-system, sans-serif; letter-spacing: 0.08em;
+             text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+
+  /* A quote */
+  .quote { margin: 4px 0 16px; padding: 4px 0 4px 18px; border-left: 4px solid var(--g);
+           font: 500 20px/1.45 ui-rounded, -apple-system, sans-serif; }
+
+  /* Questions that open */
+  .faq { display: grid; gap: 10px; margin: 16px 0; }
+  .faq details { background: var(--card); border-radius: 18px; box-shadow: 0 0 0 1px var(--edge), 0 12px 32px -16px var(--shadow); }
+  .faq summary { list-style: none; cursor: pointer; padding: 18px 52px 18px 22px; position: relative;
+                 font: 600 17px/1.35 ui-rounded, -apple-system, sans-serif; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: ""; position: absolute; right: 22px; top: 50%; width: 9px; height: 9px; margin-top: -7px;
+                        border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg);
+                        transition: transform 0.2s; }
+  .faq details[open] summary::after { transform: rotate(225deg); margin-top: -2px; }
+  .faq details > div { padding: 0 22px 18px; }
+  .faq details > div p:last-child { margin-bottom: 0; }
+
+  /* Cards side by side on a computer */
+  .pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .pair .card { margin: 0; }
+
   footer { margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--rule); font-size: 15px; color: var(--muted);
            display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline; }
   footer a { margin-right: 0; color: var(--muted); text-decoration: none; }
   footer a:hover { color: var(--accent); text-decoration: underline; }
   footer span { margin-left: auto; }
-  @media (max-width: 520px) { main { padding-top: 28px; } .card { padding: 22px 20px; } footer span { margin-left: 0; } }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; line-height: 1.6; }
+    main { padding-top: 22px; }
+    .card { padding: 22px 20px; border-radius: 22px; }
+    .band { grid-template-columns: 1fr; padding: 26px 22px 24px; border-radius: 24px; gap: 20px; }
+    .band .lead { font-size: 17px; }
+    .year { grid-template-columns: repeat(14, 1fr); gap: 4px; padding: 10px; }
+    .year i { width: auto; height: auto; aspect-ratio: 1; border-radius: 4px; }
+    .quote { font-size: 18px; }
+    footer span { margin-left: 0; }
+  }
 </style>
 </head>
 <body>
 <main>
-  <div class="hero">
-    <img src="img/icon-512.png" alt="GreenEdge app icon">
+  <header class="band">
     <div>
-      <div class="name">GreenEdge</div>
-      <div class="muted">Win the day. See the trend.</div>
+      <div class="who">
+        <img src="img/icon-512.png" alt="GreenEdge app icon">
+        <div><b>GreenEdge</b><small>Win the day. See the trend.</small></div>
+      </div>
+      <h1>Track the part you control.</h1>
+      <p class="lead">A big goal takes months, and most days there's no progress to see. So make the day the
+        goal: did you show up the way you want to? Rate it in one tap.</p>
+      <div class="legend"><span><i class="g"></i>Green</span><span><i class="y"></i>Yellow</span><span><i class="r"></i>Red</span></div>
+      <p class="lead" style="margin-top:16px">Keep having green days and, in time, you become the person you want to be.</p>
+      <!-- At launch, replace the line below with:
+           <a class="store" href="https://apps.apple.com/app/id6828074348">Download on the App Store</a> -->
+      <span class="store soon">Coming to the App Store</span>
+      <p class="note">For iPhone. Free to use, with an optional Premium.</p>
     </div>
-  </div>
-
-  <h1>Track the part you control.</h1>
-  <p class="lead">A big goal takes months, and most days there's no progress to see. So make the day the
-    goal: did you show up the way you want to? Rate it in one tap.
-    <span class="dots" aria-hidden="true"><i style="background:var(--green)"></i><i style="background:var(--yellow)"></i><i style="background:var(--red)"></i></span>Green,
-    yellow or red. Keep having green days and, in time, you become the person you want to be.</p>
-
-  <!-- At launch, replace the line below with:
-       <a class="store" href="https://apps.apple.com/app/id6828074348">Download on the App Store</a> -->
-  <span class="store soon">Coming to the App Store</span>
-  <p class="muted">For iPhone. Free to use, with an optional Premium.</p>
+    <div class="year" aria-hidden="true"><i class="g"></i><i class="g"></i><i class="g"></i><i class="r"></i><i class="g"></i><i class="g"></i><i class="y"></i><i class="g"></i><i class="y"></i><i class="g"></i><i class="y"></i><i class="y"></i><i class="y"></i><i class="g"></i><i class="g"></i><i class="y"></i><i class="g"></i><i class="y"></i><i class="g"></i><i class="y"></i><i class="y"></i><i class="y"></i><i class="g"></i><i class="g"></i><i class="r"></i><i class="r"></i><i class="y"></i><i class="r"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="r"></i><i class="y"></i><i class="g"></i><i class="g"></i><i class="n"></i><i class="n"></i><i class="n"></i><i class="n"></i></div>
+  </header>
 
   <div class="card wide">
     <div class="why">
@@ -119,7 +204,7 @@
           <div class="stage on"><small>GreenEdge</small>Actions</div><span class="arrow" aria-hidden="true">→</span>
           <div class="stage"><small>Other apps</small>Outcomes</div>
         </div>
-        <ul>
+        <ul class="points">
           <li><strong>Something you can win today.</strong> The result may be months off. A green day is available tonight.</li>
           <li><strong>Evidence about what works for you.</strong> See what goes with your green days, and what goes with the red ones.</li>
           <li><strong>The link back to results.</strong> Your days beside your weight, sleep and more from Apple Health.</li>
@@ -140,33 +225,38 @@
 
   <div class="grid">
     <div class="card">
+      <div class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg></div>
       <h2>One tap a day</h2>
       <p>At the end of the day, pick a colour: green for a good day, yellow for not quite, red for a setback.
         It's your own honest judgement, against your own standards. Add a note if you like, and fill in a
         missed day any time.</p>
     </div>
     <div class="card">
+      <div class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 7h11M9 12h11M9 17h11"/><circle cx="4.5" cy="7" r="1" fill="currentColor"/><circle cx="4.5" cy="12" r="1" fill="currentColor"/><circle cx="4.5" cy="17" r="1" fill="currentColor"/></svg></div>
       <h2>Track the details</h2>
       <p>Make your own trackers for whatever shapes your days: drinks, training, sleep, caffeine, anything.
         Log them in the same panel as the colour.</p>
     </div>
     <div class="card">
+      <div class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
       <h2>See the trend</h2>
       <p>Week, month and year views, a running score, streaks and optional goals. Share a week, a
         month or your year as a picture: colours only, never your notes.</p>
     </div>
     <div class="card">
+      <div class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></div>
       <h2>Private by design</h2>
       <p>No account, no servers, no ads, no tracking. Your days live on your iPhone and sync through your
         own private iCloud. The developer can't see them.</p>
     </div>
   </div>
 
-  <div class="card wide">
+  <div class="card wide tint">
+    <span class="eyebrow">Optional</span>
     <h2>GreenEdge Premium</h2>
     <p>Rating your days, trackers, the calendar and the Summary are free, with no limits. Premium is
       optional and adds:</p>
-    <ul>
+    <ul class="points">
       <li><strong>Insights:</strong> each week, month and year against your usual, and which trackers go
         with your green days and your red ones.</li>
       <li><strong>Health:</strong> your weight, sleep, activity, heart and more from Apple Health, beside
@@ -193,13 +283,12 @@
         <a href="screenshots/07-health-1.png">health</a>,
         <a href="screenshots/08-share.png">sharing</a></li>
       <li>Video: <a href="preview/GreenEdge-promo.mp4">46 seconds</a> (<a href="preview/GreenEdge-promo-us.mp4">American spelling</a>) or <a href="preview/GreenEdge-why.mp4">a 29-second cut</a> (all 1080 × 1920, with music), and <a href="why.html">the idea behind the app</a></li>
-      <li><a href="img/paper-calendar.jpg">The paper wall calendar it began on</a>: February 2026, a sticker a day (photo, 1800 × 1350)</li>
       <li>Plain screenshots:
         <a href="img/shot-week.jpg">week</a>, <a href="img/shot-year.jpg">year</a>,
         <a href="img/shot-day.jpg">a day</a>, <a href="img/shot-trackers.jpg">patterns</a>,
         <a href="img/shot-share.jpg">sharing</a></li>
     </ul>
-    <p>Questions, or a code to try Premium: <a href="mailto:greenedgeapp@gmail.com">greenedgeapp@gmail.com</a></p>
+    <p>Press questions: <a href="mailto:greenedgeapp@gmail.com">greenedgeapp@gmail.com</a></p>
   </div>
 
   <footer>
